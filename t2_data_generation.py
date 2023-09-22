@@ -206,8 +206,14 @@ def append_industry_and_lease_duration(df: pd.DataFrame) -> None:
     This function takes in a dataframe and appends three new columns to it: 
     1) 'Industry': Randomly chosen from predefined industries.
     2) 'Depreciation': Depreciation value corresponding to the chosen industry.
-    3) 'Lease Duration (months)': Randomly selected lease duration based on
-        predefined probabilities.
+    3) 'Contract Lease Duration (months)': Randomly selected lease duration
+        based on predefined probabilities.
+    4) 'Actual Lease Duration (months)': Lease duration agreed upon in the
+        contract +/- some white noise reflecting early contract terminations
+        or payment/reposession issues
+    5) 'Battery capacity (%)': This variable represents the current maximum
+        charge the battery can hold, expressed as a percentage of its original
+        capacity. 
 
     Args:
         df (pd.DataFrame): The input dataframe to which the new columns will be
@@ -276,7 +282,9 @@ def append_industry_and_lease_duration(df: pd.DataFrame) -> None:
         random_lease_durations * np.random.normal(1, 0.1, len(df))
     ).astype(int)
     
+    # Battery capacity is drawn from gamma distribution
     df['Battery capacity (%)'] = abs(100 - np.random.gamma(3, 3.5, len(df))).round(2)
+
 
 def append_resale_price(df: pd.DataFrame) -> None:
     '''
