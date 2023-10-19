@@ -1,0 +1,9 @@
+name: ipml-env
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.9
+  - anaconda
+  - pip
+  - pip:
+    - -r file:requirements.txt
