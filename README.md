@@ -15,9 +15,9 @@ For enrolled students, additional resources, updates, and discussions are availa
 ├── tutorial_notebooks      # Jupyter notebooks covering the tutorial contents
 ├── work_in_progress        # Materials and drafts under development
 ├── LICENSE                 # License file for the repository
-└── README.md               # The file you are currently reading
+├── README.md               # The file you are currently reading
 ├── ipml-env.yaml           # Conda environment file for setting up the IPML workspace
-├── requirements.txt        # List of Python dependencies necessary for the tutorials
+└── requirements.txt        # List of Python dependencies necessary for the tutorials
 
 ```
 
