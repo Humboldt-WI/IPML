@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import make_blobs
 
+
 def plot_class_boundary(X, y, learner, resolution=0.1):
     '''
     Plot the given dataset and the decision boundaries of a classifier.
@@ -53,8 +54,8 @@ def plot_class_boundary(X, y, learner, resolution=0.1):
 
     return fig, ax1, ax2
 
+
 def generate2D_data(size=500):
-    def generate2D_data(size=500):
     '''
     Generate a 2D dataset with two clusters using the `make_blobs` function.
 
@@ -83,6 +84,4 @@ def generate2D_data(size=500):
     '''
     means = [[1, 1], [4, 4]]
     X, y = make_blobs(n_samples=size, centers=means, random_state=888)
-    return X, y
-
     return X, y
