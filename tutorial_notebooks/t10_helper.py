@@ -211,7 +211,9 @@ def plot_class_boundary(X, y, learner, resolution=0.1):
     grid = np.column_stack((x_1.ravel(), x_2.ravel()))
     model_probs = learner.predict(grid).reshape(x_1.shape)
 
-    ax2.set_title('Classifier')
+    model_name = type(learner).__name__
+    
+    ax2.set_title(model_name)
     ax2.contourf(x_1, x_2, model_probs, 25, cmap="RdBu", vmin=0, vmax=1)
     ax2.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap="RdBu",
                 vmin=-.2, vmax=1.2, edgecolor="white", linewidth=1)
