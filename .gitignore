@@ -6,3 +6,6 @@
 
 # ignore all py-cache files
 **/.pyc
+
+# ignore everything in folder backup
+/backup/
