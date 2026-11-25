@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Python fundamentals · 20-minute recap</title><style>
+:root{color-scheme:light;--ink:#00376c;--accent:#004c90;--paper:#f0f0eb}*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,sans-serif}
+nav{padding:12px 24px;display:flex;gap:12px;align-items:center;background:#00376c;color:white;flex-wrap:wrap}
+button,a{font:inherit}button{padding:6px 12px;border:1px solid #699fcb;border-radius:6px;cursor:pointer;background:white;color:var(--ink)}nav a{color:white}nav small{margin-left:auto}
+.slide{max-width:1440px;min-height:calc(100vh - 64px);margin:auto;padding:36px 5vw 22px;background:white;display:none;flex-direction:column}
+.slide.active{display:flex}.eyebrow{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700}.eyebrow span{float:right}
+h1{font-size:clamp(28px,3.1vw,48px);line-height:1.12;margin:24px 0 30px;letter-spacing:-.035em}
+.columns{display:grid;grid-template-columns:.85fr 1.15fr;gap:4vw;align-items:start;flex:1}
+p{font-size:clamp(18px,1.6vw,24px);line-height:1.55;margin:0 0 20px}.prompt{border-left:4px solid var(--accent);padding:16px 20px;background:#e3f1ff;margin-top:32px}.prompt strong{color:var(--accent)}.prompt p{margin:10px 0 0;font-size:clamp(17px,1.4vw,21px)}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;tab-size:4;margin:0;background:#00376c;color:#fafaf5;padding:22px;border-radius:10px;font:clamp(14px,1.35vw,20px)/1.55 ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{font-size:.85em;background:#f0f0eb;padding:1px 4px;border-radius:3px}details{margin-top:12px}summary{cursor:pointer;color:var(--accent);font-weight:600}.output{background:#f0f0eb;color:var(--ink);margin-top:10px;font-size:16px}footer{display:flex;justify-content:space-between;margin-top:30px;padding-top:16px;border-top:1px solid #cfcfd1;font-size:13px;letter-spacing:.08em;color:#59595f}
+.concepts{margin:0;padding-left:1.15em;font-size:clamp(18px,1.6vw,24px);line-height:1.5}.concepts li{padding-left:.2em;margin-bottom:16px}.concepts li::marker{color:#004c90}.syntax{color:#ffd300}p code .syntax,li code .syntax{color:#004c90;font-weight:650}.comment{color:#c5def3}p code .comment,li code .comment{color:#59595f}
+body.handout .slide{display:flex;min-height:0;margin:24px auto;border:1px solid #cfcfd1;padding:32px;max-width:1200px}body.handout h1{font-size:32px}body.handout pre{font-size:16px}body.handout p,body.handout .concepts{font-size:19px}
+@media(min-width:761px) and (max-height:780px){.slide{padding-top:22px;padding-bottom:14px}h1{font-size:36px;margin:16px 0 22px}pre{font-size:16px;line-height:1.4;padding:16px}.output{font-size:14px;padding:12px}p,.concepts{font-size:20px}.concepts li{margin-bottom:12px}.prompt{margin-top:20px;padding:12px 16px}.prompt p{font-size:18px}footer{margin-top:18px;padding-top:12px}}
+@media(max-width:760px){.columns{grid-template-columns:1fr;gap:24px}.slide{padding:24px}.prompt{margin-top:16px}nav small{display:none}pre{font-size:15px}}
+@media print{@page{size:A4 landscape;margin:12mm}nav{display:none!important}.slide,body.handout .slide{display:flex!important;break-after:page;min-height:0;margin:0;border:0;padding:0}h1,body.handout h1{font-size:28px}p,body.handout p,.concepts,body.handout .concepts{font-size:15px}.concepts li{margin-bottom:10px}.prompt p{font-size:14px}pre,body.handout pre{font-size:12px;padding:14px}.output{font-size:11px}footer{margin-top:18px}.prompt{margin-top:20px}}
+@media print{.syntax{color:#ffd300}p code .syntax,li code .syntax{color:#004c90}pre{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+<nav aria-label="Presentation controls"><button id="prev">← Previous</button><button id="next">Next →</button><span id="position" aria-live="polite"></span><button id="view">Handout view</button><button id="full">Fullscreen</button><button id="print">Print / PDF</button><a href="x_python_recap_slides.ipynb">Notebook source</a><small>← → navigate · H handout · F fullscreen</small></nav>
+<main><section class="slide" id="slide-1">
+<div class="eyebrow">IPML / Python fundamentals <span>1 min</span></div>
+<h1>Variables, types &amp; arithmetic</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li><code><span class="syntax">=</span></code> binds a name to a value; <code><span class="syntax">+=</span></code> updates it.</li><li><code><span class="syntax">int</span></code>, <code><span class="syntax">float</span></code>, <code><span class="syntax">str</span></code>, and <code><span class="syntax">bool</span></code> represent different kinds of data.</li><li><code><span class="syntax">type</span><span class="syntax">(</span><span class="syntax">)</span></code> inspects a type; <code><span class="syntax">int</span><span class="syntax">(</span><span class="syntax">)</span></code> converts suitable text.</li><li><code><span class="syntax">//</span></code> counts full groups; <code><span class="syntax">%</span></code> gives the remainder.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>Predict all three numbers before running.</p></div></div>
+<div class="example"><pre><code><span class="comment"># A tiny light installation</span>
+lamps <span class="syntax">=</span> <span class="syntax">int</span><span class="syntax">(</span>&quot;17&quot;<span class="syntax">)</span>
+per_row <span class="syntax">=</span> 5
+full_rows <span class="syntax">=</span> lamps <span class="syntax">//</span> per_row
+left_over <span class="syntax">=</span> lamps <span class="syntax">%</span> per_row
+lamps <span class="syntax">+=</span> 3
+<span class="syntax">print</span><span class="syntax">(</span>full_rows<span class="syntax">,</span> left_over<span class="syntax">,</span> lamps<span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span><span class="syntax">type</span><span class="syntax">(</span>lamps<span class="syntax">)</span><span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">3 2 20
+&lt;class &#x27;int&#x27;&gt;
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>01 / 12</span></footer></section>
+<section class="slide" id="slide-2">
+<div class="eyebrow">IPML / Python fundamentals <span>1 min</span></div>
+<h1>Strings</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li><code><span class="syntax">str</span></code> stores text in quotes; strings are immutable.</li><li>Indexing selects a character; negative indices count from the end.</li><li><code><span class="syntax">.</span>upper<span class="syntax">(</span><span class="syntax">)</span></code>, <code><span class="syntax">.</span>split<span class="syntax">(</span><span class="syntax">)</span></code>, and <code><span class="syntax">.</span>replace<span class="syntax">(</span><span class="syntax">)</span></code> return new values.</li><li>An f-string inserts values into text.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>Which variable still contains the original text?</p></div></div>
+<div class="example"><pre><code>signal <span class="syntax">=</span> &quot;beep-boop&quot;
+shout <span class="syntax">=</span> signal<span class="syntax">.</span>upper<span class="syntax">(</span><span class="syntax">)</span>
+parts <span class="syntax">=</span> signal<span class="syntax">.</span>split<span class="syntax">(</span>&quot;-&quot;<span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>signal<span class="syntax">[</span>0<span class="syntax">]</span><span class="syntax">,</span> signal<span class="syntax">[</span><span class="syntax">-</span>1<span class="syntax">]</span><span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>signal<span class="syntax">.</span>replace<span class="syntax">(</span>&quot;beep&quot;<span class="syntax">,</span> &quot;ping&quot;<span class="syntax">)</span><span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>f&quot;Signal: <span class="syntax">{</span>shout<span class="syntax">}</span>; parts: <span class="syntax">{</span>parts<span class="syntax">}</span>&quot;<span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>signal<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">b p
+ping-boop
+Signal: BEEP-BOOP; parts: [&#x27;beep&#x27;, &#x27;boop&#x27;]
+beep-boop
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>02 / 12</span></footer></section>
+<section class="slide" id="slide-3">
+<div class="eyebrow">IPML / Python fundamentals <span>1 min</span></div>
+<h1>Lists &amp; slicing</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li>A <code><span class="syntax">list</span></code> is an ordered, mutable collection; indexing starts at zero.</li><li><code><span class="syntax">.</span>append<span class="syntax">(</span><span class="syntax">)</span></code> adds an item; <code><span class="syntax">.</span>pop<span class="syntax">(</span><span class="syntax">)</span></code> removes and returns the last.</li><li><code>items<span class="syntax">[</span>start<span class="syntax">:</span>stop<span class="syntax">:</span>step<span class="syntax">]</span></code> selects a portion; <code>stop</code> is excluded.</li><li>Negative indices count backwards; <code><span class="syntax">[</span><span class="syntax">:</span><span class="syntax">:</span><span class="syntax">-</span>1<span class="syntax">]</span></code> reverses the order.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>What remains in playlist, and which slices create new lists?</p></div></div>
+<div class="example"><pre><code>playlist <span class="syntax">=</span> <span class="syntax">[</span>&quot;Moonwalk&quot;<span class="syntax">,</span> &quot;Neon&quot;<span class="syntax">,</span> &quot;Echo&quot;<span class="syntax">]</span>
+playlist<span class="syntax">[</span>1<span class="syntax">]</span> <span class="syntax">=</span> &quot;Orbit&quot;
+playlist<span class="syntax">.</span>append<span class="syntax">(</span>&quot;Starlight&quot;<span class="syntax">)</span>
+last_song <span class="syntax">=</span> playlist<span class="syntax">.</span>pop<span class="syntax">(</span><span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>playlist<span class="syntax">,</span> last_song<span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>playlist<span class="syntax">[</span><span class="syntax">:</span>2<span class="syntax">]</span><span class="syntax">,</span> playlist<span class="syntax">[</span><span class="syntax">-</span>1<span class="syntax">]</span><span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>playlist<span class="syntax">[</span><span class="syntax">:</span><span class="syntax">:</span><span class="syntax">-</span>1<span class="syntax">]</span><span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">[&#x27;Moonwalk&#x27;, &#x27;Orbit&#x27;, &#x27;Echo&#x27;] Starlight
+[&#x27;Moonwalk&#x27;, &#x27;Orbit&#x27;] Echo
+[&#x27;Echo&#x27;, &#x27;Orbit&#x27;, &#x27;Moonwalk&#x27;]
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>03 / 12</span></footer></section>
+<section class="slide" id="slide-4">
+<div class="eyebrow">IPML / Python fundamentals <span>1 min</span></div>
+<h1>Dictionaries</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li>A <code><span class="syntax">dict</span></code> maps unique keys to values.</li><li><code>costs<span class="syntax">[</span>key<span class="syntax">]</span></code> looks up a value; assignment adds or replaces it.</li><li><code><span class="syntax">in</span></code> checks keys; <code><span class="syntax">.</span>items<span class="syntax">(</span><span class="syntax">)</span></code> supplies key/value pairs.</li><li>Values may themselves be lists or other containers.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>What must you check before looking up an unknown key?</p></div></div>
+<div class="example"><pre><code>costs <span class="syntax">=</span> <span class="syntax">{</span>&quot;confetti&quot;<span class="syntax">:</span> 3<span class="syntax">,</span> &quot;bubbles&quot;<span class="syntax">:</span> 2<span class="syntax">}</span>
+costs<span class="syntax">[</span>&quot;bubbles&quot;<span class="syntax">]</span> <span class="syntax">=</span> 4
+costs<span class="syntax">[</span>&quot;glitter&quot;<span class="syntax">]</span> <span class="syntax">=</span> 5
+<span class="syntax">print</span><span class="syntax">(</span>costs<span class="syntax">[</span>&quot;confetti&quot;<span class="syntax">]</span><span class="syntax">,</span> &quot;smoke&quot; <span class="syntax">in</span> costs<span class="syntax">)</span>
+<span class="syntax">for</span> effect<span class="syntax">,</span> cost <span class="syntax">in</span> costs<span class="syntax">.</span>items<span class="syntax">(</span><span class="syntax">)</span><span class="syntax">:</span>
+    <span class="syntax">print</span><span class="syntax">(</span>effect<span class="syntax">,</span> cost<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">3 False
+confetti 3
+bubbles 4
+glitter 5
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>04 / 12</span></footer></section>
+<section class="slide" id="slide-5">
+<div class="eyebrow">IPML / Python fundamentals <span>2 min</span></div>
+<h1>Mutation, aliases &amp; copies</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li>Assignment binds another name; it does not copy a list.</li><li>Aliases observe changes to the same object.</li><li><code><span class="syntax">.</span>copy<span class="syntax">(</span><span class="syntax">)</span></code> creates a separate outer list.</li><li>Rebinding a name differs from changing an object; function arguments can also share objects.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>Would a function receiving original see append() changes?</p></div></div>
+<div class="example"><pre><code>original <span class="syntax">=</span> <span class="syntax">[</span>&quot;drum&quot;<span class="syntax">,</span> &quot;bell&quot;<span class="syntax">]</span>
+alias <span class="syntax">=</span> original
+separate <span class="syntax">=</span> original<span class="syntax">.</span>copy<span class="syntax">(</span><span class="syntax">)</span>
+alias<span class="syntax">.</span>append<span class="syntax">(</span>&quot;gong&quot;<span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>original<span class="syntax">,</span> separate<span class="syntax">)</span>
+alias <span class="syntax">=</span> <span class="syntax">[</span>&quot;whistle&quot;<span class="syntax">]</span>
+<span class="syntax">print</span><span class="syntax">(</span>original<span class="syntax">,</span> alias<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">[&#x27;drum&#x27;, &#x27;bell&#x27;, &#x27;gong&#x27;] [&#x27;drum&#x27;, &#x27;bell&#x27;]
+[&#x27;drum&#x27;, &#x27;bell&#x27;, &#x27;gong&#x27;] [&#x27;whistle&#x27;]
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>05 / 12</span></footer></section>
+<section class="slide" id="slide-6">
+<div class="eyebrow">IPML / Python fundamentals <span>2 min</span></div>
+<h1>Booleans &amp; branches</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li>Comparisons such as <code><span class="syntax">==</span></code>, <code><span class="syntax">!=</span></code>, and <code><span class="syntax">&gt;</span></code> produce <code><span class="syntax">True</span></code> or <code><span class="syntax">False</span></code>.</li><li>Combine conditions with <code><span class="syntax">and</span></code>, <code><span class="syntax">or</span></code>, and <code><span class="syntax">not</span></code>.</li><li><code><span class="syntax">if</span></code> / <code><span class="syntax">elif</span></code> / <code><span class="syntax">else</span></code> selects the first matching branch.</li><li>Colons and indentation define blocks; branches can contain branches.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>Predict the message. What changes if quiet_hour becomes False?</p></div></div>
+<div class="example"><pre><code>volume <span class="syntax">=</span> 7
+quiet_hour <span class="syntax">=</span> <span class="syntax">True</span>
+message <span class="syntax">=</span> &quot;Silence&quot;
+<span class="syntax">if</span> volume <span class="syntax">==</span> 0<span class="syntax">:</span>
+    message <span class="syntax">=</span> &quot;Muted&quot;
+<span class="syntax">elif</span> quiet_hour <span class="syntax">and</span> volume <span class="syntax">&gt;</span> 5<span class="syntax">:</span>
+    message <span class="syntax">=</span> &quot;Please turn it down&quot;
+<span class="syntax">else</span><span class="syntax">:</span>
+    message <span class="syntax">=</span> &quot;Party mode&quot;
+<span class="syntax">print</span><span class="syntax">(</span>message<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">Please turn it down
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>06 / 12</span></footer></section>
+<section class="slide" id="slide-7">
+<div class="eyebrow">IPML / Python fundamentals <span>2 min</span></div>
+<h1>for loops &amp; comprehensions</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li><code><span class="syntax">for</span></code> visits each item in a container.</li><li><code><span class="syntax">enumerate</span><span class="syntax">(</span><span class="syntax">)</span></code> supplies index/item tuples for unpacking.</li><li><code><span class="syntax">range</span><span class="syntax">(</span>start<span class="syntax">,</span> stop<span class="syntax">,</span> step<span class="syntax">)</span></code> supplies integers, excluding <code>stop</code>.</li><li>A list comprehension builds a new list; <code><span class="syntax">if</span></code> can filter items.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>Which act is excluded from short_acts? Does acts change?</p></div></div>
+<div class="example"><pre><code>acts <span class="syntax">=</span> <span class="syntax">[</span>&quot;mime&quot;<span class="syntax">,</span> &quot;juggler&quot;<span class="syntax">,</span> &quot;magician&quot;<span class="syntax">]</span>
+<span class="syntax">for</span> index<span class="syntax">,</span> act <span class="syntax">in</span> <span class="syntax">enumerate</span><span class="syntax">(</span>acts<span class="syntax">)</span><span class="syntax">:</span>
+    <span class="syntax">print</span><span class="syntax">(</span>index <span class="syntax">+</span> 1<span class="syntax">,</span> act<span class="syntax">)</span>
+<span class="syntax">for</span> minute <span class="syntax">in</span> <span class="syntax">range</span><span class="syntax">(</span>2<span class="syntax">,</span> 7<span class="syntax">,</span> 2<span class="syntax">)</span><span class="syntax">:</span>
+    <span class="syntax">print</span><span class="syntax">(</span>f&quot;Cue at minute <span class="syntax">{</span>minute<span class="syntax">}</span>&quot;<span class="syntax">)</span>
+short_acts <span class="syntax">=</span> <span class="syntax">[</span>act<span class="syntax">.</span>upper<span class="syntax">(</span><span class="syntax">)</span> <span class="syntax">for</span> act <span class="syntax">in</span> acts
+              <span class="syntax">if</span> <span class="syntax">len</span><span class="syntax">(</span>act<span class="syntax">)</span> <span class="syntax">&lt;</span> 8<span class="syntax">]</span>
+<span class="syntax">print</span><span class="syntax">(</span>short_acts<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">1 mime
+2 juggler
+3 magician
+Cue at minute 2
+Cue at minute 4
+Cue at minute 6
+[&#x27;MIME&#x27;, &#x27;JUGGLER&#x27;]
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>07 / 12</span></footer></section>
+<section class="slide" id="slide-8">
+<div class="eyebrow">IPML / Python fundamentals <span>2 min</span></div>
+<h1>while loops &amp; loop control</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li><code><span class="syntax">while</span></code> repeats while its condition is true; update state so it can stop.</li><li>A loop can execute zero times.</li><li><code><span class="syntax">continue</span></code> skips the rest of an iteration; <code><span class="syntax">break</span></code> exits the loop.</li><li>A <code><span class="syntax">while</span></code>-<code><span class="syntax">else</span></code> block runs after normal completion, not after <code><span class="syntax">break</span></code>.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>What happens if the starting temperature is 23?</p></div></div>
+<div class="example"><pre><code>temperature <span class="syntax">=</span> 31
+minutes <span class="syntax">=</span> 0
+<span class="syntax">while</span> temperature <span class="syntax">&gt;</span> 24<span class="syntax">:</span>
+    temperature <span class="syntax">-=</span> 2
+    minutes <span class="syntax">+=</span> 1
+<span class="syntax">else</span><span class="syntax">:</span>
+    <span class="syntax">print</span><span class="syntax">(</span>&quot;Cooling complete&quot;<span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>minutes<span class="syntax">,</span> temperature<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">Cooling complete
+4 23
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>08 / 12</span></footer></section>
+<section class="slide" id="slide-9">
+<div class="eyebrow">IPML / Python fundamentals <span>2 min</span></div>
+<h1>Functions, return &amp; tuples</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li><code><span class="syntax">def</span></code> groups reusable logic; a docstring explains its contract.</li><li>Parameters receive inputs; variables assigned inside are local.</li><li><code><span class="syntax">return</span></code> passes results back; <code><span class="syntax">print</span><span class="syntax">(</span><span class="syntax">)</span></code> only displays them.</li><li>Multiple results form a <code><span class="syntax">tuple</span></code>: unpack it into names. Tuple items cannot be replaced.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>Can the caller access the local name total directly?</p></div></div>
+<div class="example"><pre><code><span class="syntax">def</span> rehearsal_time<span class="syntax">(</span>acts<span class="syntax">,</span> pause<span class="syntax">)</span><span class="syntax">:</span>
+    &quot;&quot;&quot;Return total minutes and number of acts.&quot;&quot;&quot;
+    count <span class="syntax">=</span> <span class="syntax">len</span><span class="syntax">(</span>acts<span class="syntax">)</span>
+    total <span class="syntax">=</span> <span class="syntax">sum</span><span class="syntax">(</span>acts<span class="syntax">)</span> <span class="syntax">+</span> pause <span class="syntax">*</span> <span class="syntax">(</span>count <span class="syntax">-</span> 1<span class="syntax">)</span>
+    <span class="syntax">return</span> total<span class="syntax">,</span> count
+
+minutes<span class="syntax">,</span> count <span class="syntax">=</span> rehearsal_time<span class="syntax">(</span><span class="syntax">[</span>4<span class="syntax">,</span> 6<span class="syntax">,</span> 3<span class="syntax">]</span><span class="syntax">,</span> 2<span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>minutes<span class="syntax">,</span> count<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">17 3
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>09 / 12</span></footer></section>
+<section class="slide" id="slide-10">
+<div class="eyebrow">IPML / Python fundamentals <span>2 min</span></div>
+<h1>Arguments &amp; defaults</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li>Arguments can be positional or named.</li><li>A default is used when an argument is omitted.</li><li><code><span class="syntax">*</span>args</code> collects positional arguments in a tuple.</li><li><code><span class="syntax">**</span>kwargs</code> collects named arguments in a dictionary.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>What types are acts and details?</p></div></div>
+<div class="example"><pre><code><span class="syntax">def</span> announce<span class="syntax">(</span>act<span class="syntax">,</span> stage<span class="syntax">=</span>&quot;Tent&quot;<span class="syntax">)</span><span class="syntax">:</span>
+    <span class="syntax">return</span> f&quot;<span class="syntax">{</span>act<span class="syntax">}</span> at <span class="syntax">{</span>stage<span class="syntax">}</span>&quot;
+
+<span class="syntax">print</span><span class="syntax">(</span>announce<span class="syntax">(</span>&quot;Shadow puppets&quot;<span class="syntax">)</span><span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>announce<span class="syntax">(</span>stage<span class="syntax">=</span>&quot;Hall&quot;<span class="syntax">,</span> act<span class="syntax">=</span>&quot;Beatbox&quot;<span class="syntax">)</span><span class="syntax">)</span>
+
+<span class="syntax">def</span> show_booking<span class="syntax">(</span><span class="syntax">*</span>acts<span class="syntax">,</span> <span class="syntax">**</span>details<span class="syntax">)</span><span class="syntax">:</span>
+    <span class="syntax">print</span><span class="syntax">(</span>acts<span class="syntax">,</span> details<span class="syntax">)</span>
+
+show_booking<span class="syntax">(</span>&quot;Mime&quot;<span class="syntax">,</span> &quot;Dance&quot;<span class="syntax">,</span> seats<span class="syntax">=</span>12<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">Shadow puppets at Tent
+Beatbox at Hall
+(&#x27;Mime&#x27;, &#x27;Dance&#x27;) {&#x27;seats&#x27;: 12}
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>10 / 12</span></footer></section>
+<section class="slide" id="slide-11">
+<div class="eyebrow">IPML / Python fundamentals <span>2 min</span></div>
+<h1>Classes, objects &amp; methods</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li>A <code><span class="syntax">class</span></code> is a template; an object is one instance.</li><li><code><span class="syntax">__init__</span></code> sets attributes; <code><span class="syntax">self</span></code> refers to the instance.</li><li>Methods join state and behaviour; each instance has its own state.</li><li>Abstraction exposes a useful interface. Encapsulation groups state management; these attributes remain public.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>Would a second Lantern automatically be lit too?</p></div></div>
+<div class="example"><pre><code><span class="syntax">class</span> Lantern<span class="syntax">:</span>
+    <span class="syntax">def</span> <span class="syntax">__init__</span><span class="syntax">(</span><span class="syntax">self</span><span class="syntax">,</span> name<span class="syntax">)</span><span class="syntax">:</span>
+        <span class="syntax">self</span><span class="syntax">.</span>name <span class="syntax">=</span> name
+        <span class="syntax">self</span><span class="syntax">.</span>lit <span class="syntax">=</span> <span class="syntax">False</span>
+
+    <span class="syntax">def</span> switch_on<span class="syntax">(</span><span class="syntax">self</span><span class="syntax">)</span><span class="syntax">:</span>
+        <span class="syntax">self</span><span class="syntax">.</span>lit <span class="syntax">=</span> <span class="syntax">True</span>
+
+lamp <span class="syntax">=</span> Lantern<span class="syntax">(</span>&quot;Firefly&quot;<span class="syntax">)</span>
+lamp<span class="syntax">.</span>switch_on<span class="syntax">(</span><span class="syntax">)</span>
+<span class="syntax">print</span><span class="syntax">(</span>lamp<span class="syntax">.</span>name<span class="syntax">,</span> lamp<span class="syntax">.</span>lit<span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">Firefly True
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>11 / 12</span></footer></section>
+<section class="slide" id="slide-12">
+<div class="eyebrow">IPML / Python fundamentals <span>2 min</span></div>
+<h1>Inheritance &amp; polymorphism</h1>
+<div class="columns"><div class="explanation"><ul class="concepts"><li>A subclass reuses its parent attributes and methods.</li><li><code><span class="syntax">super</span><span class="syntax">(</span><span class="syntax">)</span></code> calls the parent implementation.</li><li>Overriding changes an inherited method.</li><li>Polymorphism: the same method call selects behaviour according to the object.</li></ul>
+<div class="prompt"><strong>Predict &amp; explain</strong><p>Which method implementation does each object use?</p></div></div>
+<div class="example"><pre><code><span class="syntax">class</span> Sound<span class="syntax">:</span>
+    <span class="syntax">def</span> <span class="syntax">__init__</span><span class="syntax">(</span><span class="syntax">self</span><span class="syntax">,</span> name<span class="syntax">)</span><span class="syntax">:</span>
+        <span class="syntax">self</span><span class="syntax">.</span>name <span class="syntax">=</span> name
+    <span class="syntax">def</span> play<span class="syntax">(</span><span class="syntax">self</span><span class="syntax">)</span><span class="syntax">:</span>
+        <span class="syntax">return</span> &quot;ding&quot;
+
+<span class="syntax">class</span> Drum<span class="syntax">(</span>Sound<span class="syntax">)</span><span class="syntax">:</span>
+    <span class="syntax">def</span> <span class="syntax">__init__</span><span class="syntax">(</span><span class="syntax">self</span><span class="syntax">,</span> name<span class="syntax">)</span><span class="syntax">:</span>
+        <span class="syntax">super</span><span class="syntax">(</span><span class="syntax">)</span><span class="syntax">.</span><span class="syntax">__init__</span><span class="syntax">(</span>name<span class="syntax">)</span>
+    <span class="syntax">def</span> play<span class="syntax">(</span><span class="syntax">self</span><span class="syntax">)</span><span class="syntax">:</span>
+        <span class="syntax">return</span> &quot;boom&quot;
+
+<span class="syntax">for</span> sound <span class="syntax">in</span> <span class="syntax">[</span>Sound<span class="syntax">(</span>&quot;bell&quot;<span class="syntax">)</span><span class="syntax">,</span> Drum<span class="syntax">(</span>&quot;bass&quot;<span class="syntax">)</span><span class="syntax">]</span><span class="syntax">:</span>
+    <span class="syntax">print</span><span class="syntax">(</span>sound<span class="syntax">.</span>name<span class="syntax">,</span> sound<span class="syntax">.</span>play<span class="syntax">(</span><span class="syntax">)</span><span class="syntax">)</span></code></pre>
+<details><summary>Reveal output</summary><pre class="output">bell ding
+bass boom
+</pre></details></div></div>
+<footer>RECALL → PREDICT → EXPLAIN <span>12 / 12</span></footer></section></main><script>
+const slides=[...document.querySelectorAll('.slide')];let index=0;
+function show(n){index=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,i)=>s.classList.toggle('active',i===index));document.getElementById('position').textContent=`${index+1} / ${slides.length}`;document.getElementById('prev').disabled=index===0;document.getElementById('next').disabled=index===slides.length-1;history.replaceState(null,'',`#slide-${index+1}`)}
+function handout(){document.body.classList.toggle('handout');document.getElementById('view').textContent=document.body.classList.contains('handout')?'Slide view':'Handout view'}
+async function full(){if(document.fullscreenElement){await document.exitFullscreen()}else{await document.documentElement.requestFullscreen()}}
+document.getElementById('prev').onclick=()=>show(index-1);document.getElementById('next').onclick=()=>show(index+1);document.getElementById('view').onclick=handout;document.getElementById('full').onclick=full;document.getElementById('print').onclick=()=>{document.querySelectorAll('details').forEach(d=>d.open=true);window.print()};
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();show(index+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(index-1)}if(e.key.toLowerCase()==='h')handout();if(e.key.toLowerCase()==='f')full()});
+show((parseInt(location.hash.replace('#slide-',''))||1)-1);
+</script></body></html>
